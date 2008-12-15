@@ -15,7 +15,7 @@ This plugin fixes the Thickbox CSS problem; when this plugin is actived the Thic
 
 In order to install this plugin, please follow the next steps:
  1. install EP Tools (Eros Pedrini Tools) - Plugins GUI (if it has not been yet installed);
- 2. copy the xyz folder in the WordPress folder wp-content/plugins;
+ 2. copy the ep-tools-eros-pedrini-tools-thickbox-validation-fix folder in the WordPress folder wp-content/plugins;
  5. active this plugin from the WordPress plugin interfece;
  6. configure the plugin using the interface under the Manage page in WordPress Administration.
 
