@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: EP_Tools (Eros Pedrini Tools) - Thickbox CSS Fix
-http://www.contezero.net/sites/contezero/index.php/2008/12/15/thickbox-fix-plugin/
+Plugin URI: http://www.contezero.net/sites/contezero/index.php/2008/12/15/thickbox-fix-plugin/
 Description: This plugin makes Thickbox CSS compliant
 Author: Eros Pedrini
-Version: 1.0
+Version: 1.1
 Author URI: http://www.contezero.net/
 
 
@@ -32,33 +32,42 @@ require_once(EP_TOOLS_GUI_DIR . '/lib/wordpress_pre2.6.inc');
 
 
 class ep_tools_thickbox_fix {
-    function ep_tools_thickbox_fix() {
-        $ThickBoxFixURL = WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/Thickbox';
-        
-        wp_enqueue_script('ep_tools_thickbox_fix', $ThickBoxFixURL . '/tb_css_fix.js', array('jquery','thickbox'));
-        
-        add_action('wp_head', array(&$this,'addThickboxCssFix'));		
+    function ep_tools_thickbox_fix() {        
+        add_action('init', array(&$this,'addThickboxCssFix_JS'));
+        add_action('wp_head', array(&$this,'addThickboxCssFix_CSS'));		
     }
     
-    function addThickboxCssFix(){
+    function addThickboxCssFix_CSS(){
         $ThickboxURL    = get_option( 'siteurl' ) . '/' . WPINC . '/js/thickbox';
         $ThickBoxFixURL = WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/Thickbox';
         
-        if ( get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable_GS') == 'true' ) {
-            $ThickBoxFixURL = $ThickBoxFixURL . '/thickbox.css';
-        } else {
-            $ThickBoxFixURL = $ThickBoxFixURL . '/thickbox_wogs.css';
-        }
-
-		echo '<link rel="stylesheet" href="' . $ThickBoxFixURL . '" type="text/css" media="screen" />' . "\n";
+        if (  !$this->isAdminArea &&  get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable') == 'true' ) {                
+            if ( get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable_GS') == 'true' ) {
+                $ThickBoxFixURL = $ThickBoxFixURL . '/thickbox.css';
+            } else {
+                $ThickBoxFixURL = $ThickBoxFixURL . '/thickbox_wogs.css';
+            }
+            
+            echo '<link rel="stylesheet" href="' . $ThickBoxFixURL . '" type="text/css" media="screen" />' . "\n";
 	   
-		echo "<!-- fix Thickbox path -->\n";
-		echo '<script type="text/javascript">' . "\n";
-		echo "\t// <![CDATA[ \n";
-		echo "\t" . 'var tb_pathToImage = "' . $ThickboxURL . '/loadingAnimation.gif";' . "\n";
-		echo "\t" . 'var tb_closeImage  = "' . $ThickboxURL . '/tb-close.png";' . "\n";
-		echo "\t// ]]> \n";
-		echo "</script>\n";
+    		echo "<!-- fix Thickbox path -->\n";
+    		echo '<script type="text/javascript">' . "\n";
+    		echo "\t// <![CDATA[ \n";
+    		echo "\t" . 'var tb_pathToImage = "' . $ThickboxURL . '/loadingAnimation.gif";' . "\n";
+    		echo "\t" . 'var tb_closeImage  = "' . $ThickboxURL . '/tb-close.png";' . "\n";
+    		echo "\t// ]]> \n";
+    		echo "</script>\n";
+    	}
+    }
+    
+    function addThickboxCssFix_JS() {
+        if ( !is_admin() &&  get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable') == 'true' ) { 
+            $ThickBoxFixURL = WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/Thickbox';
+        
+            wp_enqueue_script('ep_tools_thickbox_fix', $ThickBoxFixURL . '/tb_css_fix.js', array('jquery','thickbox'));
+            
+            $this->isAdminArea = false;
+        }
     }
 }
 
