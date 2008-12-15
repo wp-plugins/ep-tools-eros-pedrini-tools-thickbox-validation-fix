@@ -1,0 +1,82 @@
+<?php
+/*
+EP_Tools (Eros Pedrini Tools) - Thickbox CSS Fix GUI (Ver 1.0)
+This is GUI for EP_Tools Thickbox CSS Fix plugin.
+
+by Eros Pedrini
+
+
+Copyright 2008  Eros Pedrini  (email : contezero74@yahoo.it)
+
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+define( 'EP_TOOLS_GUI_DIR', get_option('ep_tools_plugins_gui_dir') );
+
+
+require_once(EP_TOOLS_GUI_DIR . '/ep_tools_plugin_gui_class.php');
+require_once(EP_TOOLS_GUI_DIR . '/lib/wordpress_pre2.6.inc');
+
+class ep_tools_thickbox_css_fix_gui extends ep_tools_plugin_gui_class {
+    function ep_tools_thickbox_css_fix_gui() {}
+    
+    function printTitle() {
+        echo 'Thickbox 3.1 CSS Fix';
+    }
+    
+    function printGUI() {
+        $IsPluginEnabled = (get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable') == 'true');
+        
+        echo "\n<p>\n";
+        echo "\t<label>\n";
+        echo "\t\t<input name=\"ep_tools_opt_thickbox_css_fix\" id=\"ep_tools_opt_thickbox_css_fix\" value=\"true\" type=\"checkbox\" ";
+                
+        if ( $IsPluginEnabled ) {
+            echo ' checked="checked" ';
+        }
+        
+        echo "/>\n";
+        
+        echo "Fix <em>Thickbox 3.1</em> <em>CSS</em> validation problem: with this plugin a page using <em>Thickbox 3.1</em> is <em>XHTML</em> valid\n";
+        
+        echo "\t</label>\n";
+        echo "</p>\n";
+        
+        echo "<p>\n";
+        echo "\t<label>\n";
+        echo "\t\t<input name=\"ep_tools_opt_thickbox_css_fix_WGS\" id=\"ep_tools_opt_thickbox_css_fix_WGS\" value=\"true\" type=\"checkbox\" ";
+                
+        if ( !$IsPluginEnabled ) {
+            echo ' disabled="disabled" ';
+        }
+        
+        if ( get_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable_GS') == 'true' ) {
+            echo ' checked="checked" ';
+        }
+        
+        echo "/>\n";
+        
+        echo "Enable <em>Thickbox 3.1</em> to reset CSS (this option can be incompatible with some themes) \n";
+        
+        echo "\t</label>\n";
+        echo "</p>\n";        
+    }
+    
+    function updateConfig() {
+        update_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable', $_POST['ep_tools_opt_thickbox_css_fix']);
+        update_option('ep_tools_plugin_Thickbox_CSS_Fix_Enable_GS', $_POST['ep_tools_opt_thickbox_css_fix_WGS']);
+    }
+}
