@@ -9,7 +9,7 @@ This plugin makes Thickbox CSS compliant.
 
 == Description ==
 
-This plugin fixes the Thickbox CSS problem; when this plugin is actived the Thickbox plugin became compliant with CSS validation.
+This plugin fixes the Thickbox CSS problem; when this plugin is active the Thickbox plugin became compliant with CSS validation.
 
 == Installation ==
 
