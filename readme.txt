@@ -3,7 +3,7 @@ Contributors: Eros Pedrini
 Tags: thickbox, css, validation, fix
 Requires at least: 2.1
 Tested up to: 2.6
-Stable tag: 1.0
+Stable tag: 1.1
 
 This plugin makes Thickbox CSS compliant.
 
