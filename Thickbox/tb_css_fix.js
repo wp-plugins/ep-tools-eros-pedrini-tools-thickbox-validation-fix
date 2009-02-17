@@ -6,7 +6,7 @@
     
     Coded by Eros Pedrini   (mailto: contezero74@yahoo.it)
     
-    Version: 1.2
+    Version: 1.3
     
 
     This program is free software; you can redistribute it and/or modify
