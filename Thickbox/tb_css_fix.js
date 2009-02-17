@@ -6,7 +6,7 @@
     
     Coded by Eros Pedrini   (mailto: contezero74@yahoo.it)
     
-    Version: 1.0
+    Version: 1.2
     
 
     This program is free software; you can redistribute it and/or modify
@@ -23,6 +23,24 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+function getHeight() {
+    var h = 0;
+
+    if (typeof(window.innerHeight) == "number") {
+        h = window.innerHeight;
+    } else {
+        if (document.documentElement && document.documentElement.clientHeight) {
+            h = document.documentElement.clientHeight;
+        } else {
+            if (document.body && document.body.clientHeight) {
+                h = document.body.clientHeight;
+            }
+        }
+    }
+
+    return h;
+}
 
 
 jQuery(document).ready(function(){      
@@ -48,6 +66,7 @@ jQuery(document).ready(function(){
             jQuery('#TB_HideSelect').css({'height':Height_1});                                                  // line  165
         }
         
+        var TB_HEIGHT = getHeight() - 50; // 50px seems to work in all most cases        
         if (!isMSIE6) {
             jQuery("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
         }

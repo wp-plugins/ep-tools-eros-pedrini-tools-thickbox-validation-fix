@@ -3,13 +3,15 @@ Contributors: Eros Pedrini
 Tags: thickbox, css, validation, fix
 Requires at least: 2.1
 Tested up to: 2.6
-Stable tag: 1.1
+Stable tag: 1.2
 
 This plugin makes Thickbox CSS compliant.
 
 == Description ==
 
 This plugin fixes the Thickbox CSS problem; when this plugin is active the Thickbox plugin became compliant with CSS validation.
+
+This new release fixes a javascript bug (a declaration variable missing) and improves the quality of the visualization under IE7.
 
 == Installation ==
 
