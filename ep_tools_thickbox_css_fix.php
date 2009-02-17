@@ -4,7 +4,7 @@ Plugin Name: EP_Tools (Eros Pedrini Tools) - Thickbox CSS Fix
 Plugin URI: http://www.contezero.net/sites/contezero/index.php/2008/12/14/thickbox-fix-plugin/
 Description: This plugin makes Thickbox CSS compliant
 Author: Eros Pedrini
-Version: 1.1
+Version: 1.2
 Author URI: http://www.contezero.net/
 
 
